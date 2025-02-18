@@ -5,7 +5,7 @@ Instructions for setting up your project locally.
 
 ```bash
 # Clone the repository
-
+https://github.com/prog-stream/antropika-landing-page.git
 
 # Navigate into the project directory
 cd antropika_landing_page
