@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antropika Onboarding Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '../static/stylesheets/style.css' %}" />
+    
+  </head>
+  <body>
+    {% load static %}
+
+    <section class="hero-section">
+      <div class="hero-content">
+        <!-- Logo -->
+        <img
+          src="{% static 'images/logo-without-desc.svg'%}"
+          alt="Antropika Logo"
+          class="logo"
+        />
+        <!-- Main Text -->
+        <div class="main-text">Per le guide</div>
+
+        <!-- Content Block -->
+        <div class="content-block">
+          <h1>
+            Sei una guida turistica? Fai la tua pre-registrazione alla app in
+            pochi secondi!
+          </h1>
+          <p>
+            Unisciti alla rivoluzione del turismo: crea e vendi i tuoi tour in
+            totale libertà, con il pieno controllo su prezzi e itinerari.
+            Raggiungi direttamente i clienti giusti, aumenta i tuoi guadagni e
+            crea esperienze uniche. Il futuro delle guide inizia ora!
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="form-container">
+        <h2 class="form-title">Iscriviti per accedere in anteprima!</h2>
+
+        <form method="POST" action="{{url}}">
+          <div class="form-row">
+            <div class="form-group">
+              <div class="input-wrapper">
+                <img
+                  src="{% static 'images/name-icon.svg' %}"
+                  alt="user-pen"
+                  class="icon"
+                />
+                <input type="text" id="nome" placeholder="Nome" required name="first_name"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-wrapper">
+                <img
+                  src="{% static 'images/name-icon.svg' %}"
+                  alt="user-pen"
+                  class="icon"
+                />
+                <input
+                  type="text"
+                  id="cognome"
+                  placeholder="Cognome"
+                  name="last_name"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-wrapper">
+              <img
+                src="{% static 'images/mail-icon.svg' %}"
+                alt="email"
+                class="icon"
+              />
+              <input type="email" id="email" placeholder="Email" required name="email"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <div class="input-wrapper">
+                <img
+                  src="{% static 'images/prime-language.svg' %}"
+                  alt="language"
+                  class="icon"
+                />
+                <input
+                  type="text"
+                  id="lingue"
+                  placeholder="Lingue parlate"
+                  required
+                  name="language"
+                  
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-wrapper">
+                <img
+                  src="{% static 'images/mdi-phone-outline.svg' %}"
+                  alt="phone"
+                  class="icon"
+                />
+                <input
+                  type="tel"
+                  id="cellulare"
+                  placeholder="Cellulare"
+                  required
+                  name="phone"
+                  type="tel"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <button type="submit" class="submit-btn">Registrati!</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="services-section">
+      <h2>Prova Anche Tu I Nostri Servizi</h2>
+      <div class="services-container">
+        <!-- Service Item 1 -->
+        <div class="service-item">
+          <div class="icon-wrapper">
+            <!-- Replace 'icon1.svg' with the path to your actual icon -->
+            <img src="{% static 'images/brochure.svg' %}" alt="Icona 1" />
+          </div>
+          <h3>Libera la creatività</h3>
+          <p>Personalizza i tuoi tour. Dai vita a delle esperienze uniche.</p>
+        </div>
+
+        <!-- Service Item 2 -->
+        <div class="service-item highlight">
+          <div class="icon-wrapper">
+            <!-- Replace 'icon2.svg' with the path to your actual icon -->
+            <img src="{% static 'images/money.svg' %}" alt="Icona 2" />
+          </div>
+          <h3>Aumenta i guadagni</h3>
+          <p>la maggior parte dell'incasso è tuo!</p>
+        </div>
+
+        <!-- Service Item 3 -->
+        <div class="service-item">
+          <div class="icon-wrapper">
+            <!-- Replace 'icon3.svg' with the path to your actual icon -->
+            <img
+              src="{% static 'images/analytics-sharp.svg' %}"
+              alt="Icona 3"
+            />
+          </div>
+          <h3>Tieni d'occhio le prenotazioni</h3>
+          <p>
+            Monitora le prenotazioni dei tour e tieni traccia dei tour che hai
+            fatto.
+          </p>
+        </div>
+
+        <!-- Service Item 4 -->
+        <div class="service-item">
+          <div class="icon-wrapper">
+            <!-- Replace 'icon4.svg' with the path to your actual icon -->
+            <img src="{% static 'images/hat.svg' %}" alt="Icona 4" />
+          </div>
+          <h3>Coinvolgi i turisti</h3>
+          <p>
+            Comunica con i turisti attraverso l'app per fornire un'esperienza
+            personalizzata.
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>
+        All rights reserved
+        <a href="mailto:info@antropika.com">info@antropika.com</a>
+      </p>
+    </footer>
+  </body>
+</html>
