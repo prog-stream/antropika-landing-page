@@ -50,7 +50,7 @@ class LandingPageView(APIView):
 
 
 class RegisterView(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
+    # renderer_classes = [TemplateHTMLRenderer]
 
     def post(self, request):
         try:
@@ -59,6 +59,7 @@ class RegisterView(APIView):
             email = request.data.get("email")
             phone = request.data.get("phone")
             language = request.data.get("language")
+            response_data = {"code": None, "data": None, "message": None}
 
             user = User.objects.create(
                 first_name=first_name,
@@ -69,22 +70,27 @@ class RegisterView(APIView):
                 status=1,
             )
             user.save()
-            return Response(
-                {"message": "User registered successfully"},
-                template_name="success.html",
-            )
+            response_data = {
+                "code": 201,
+                "data": None,
+                "message": "Registrazione riuscita",
+            }
+
+            return Response({"success": response_data})
         except IntegrityError as e:
             logging.exception(e)
+            response_data = {
+                "code": 422,
+                "data": None,
+                "message": "Utente già registrato",
+            }
             if "duplicate key value violates unique constraint" in str(e):
-                return Response(
-                    {"message": "User Already registered"}, template_name="error.html"
-                )
+                return Response({"success": response_data})
         except Exception as e:
             logging.exception(e)
-            if isinstance(e, ValidationError) and "unique" in str(e):
-                return Response(
-                    {"message": "User Already registered"}, template_name="error.html"
-                )
-            return Response(
-                {"message": "Something went wrong"}, template_name="error.html"
-            )
+            response_data = {
+                "code": 422,
+                "data": None,
+                "message": "Qualcosa è andato storto",
+            }
+            return Response({"error": response_data})

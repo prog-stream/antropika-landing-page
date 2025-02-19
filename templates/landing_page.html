@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antropika Onboarding Form</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static '../static/stylesheets/style.css' %}" />
-    
+    <link
+      rel="stylesheet"
+      href="{% static '../static/stylesheets/style.css' %}"
+    />
   </head>
   <body>
     {% load static %}
@@ -34,14 +36,22 @@
             Raggiungi direttamente i clienti giusti, aumenta i tuoi guadagni e
             crea esperienze uniche. Il futuro delle guide inizia ora!
           </p>
+          <div class="arrow-down">
+            <a href="#onboardingForm"
+              ><img
+                src="{% static 'images/arrow_down.svg' %}"
+                alt="Scroll Down"
+                style="cursor: pointer"
+            /></a>
+          </div>
         </div>
       </div>
     </section>
-    <section class="form-section">
+    <section class="form-section" id="onboardingForm">
       <div class="form-container">
         <h2 class="form-title">Iscriviti per accedere in anteprima!</h2>
 
-        <form method="POST" action="{{url}}">
+        <form id="registrationForm" method="POST" action="{{url}}">
           <div class="form-row">
             <div class="form-group">
               <div class="input-wrapper">
@@ -50,7 +60,13 @@
                   alt="user-pen"
                   class="icon"
                 />
-                <input type="text" id="nome" placeholder="Nome" required name="first_name"/>
+                <input
+                  type="text"
+                  id="nome"
+                  placeholder="Nome"
+                  required
+                  name="first_name"
+                />
               </div>
             </div>
             <div class="form-group">
@@ -78,7 +94,13 @@
                 alt="email"
                 class="icon"
               />
-              <input type="email" id="email" placeholder="Email" required name="email"/>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                required
+                name="email"
+              />
             </div>
           </div>
           <div class="form-row">
@@ -95,7 +117,6 @@
                   placeholder="Lingue parlate"
                   required
                   name="language"
-                  
                 />
               </div>
             </div>
@@ -118,7 +139,10 @@
               </div>
             </div>
           </div>
+          <div id="messageContainer"></div>
+
           <div class="btn-container">
+            <!-- Container for messages -->
             <button type="submit" class="submit-btn">Registrati!</button>
           </div>
         </form>
@@ -183,5 +207,61 @@
         <a href="mailto:info@antropika.com">info@antropika.com</a>
       </p>
     </footer>
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const form = e.target;
+          const url = form.action;
+          const formData = new FormData(form);
+
+          fetch(url, {
+            method: "POST",
+            body: formData,
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+            },
+          })
+            .then((response) => {
+              // Assuming the backend sends a JSON response like { success: true } on success
+              return response.json();
+            })
+            .then((data) => {
+              if (data.success.code == 201) {
+                // Clear the form fields
+                form.reset();
+                // Display success message
+                showMessage(data.success.message, "success");
+              } else if (data.success.code == 422) {
+                // Display error message
+                showMessage(data.success.message, "error");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              // Display error message on catch
+              showMessage("Registrazione non riuscita. Riprovare.", "error");
+            });
+        });
+
+      function showMessage(message, type) {
+        const container = document.getElementById("messageContainer");
+        const messageEl = document.createElement("div");
+        messageEl.className = `message ${type}`;
+        messageEl.textContent = message;
+
+        container.appendChild(messageEl);
+
+        // Remove the message after 3 seconds with a fade-out effect
+        setTimeout(() => {
+          messageEl.classList.add("fade-out");
+          messageEl.addEventListener("animationend", () => {
+            messageEl.remove();
+          });
+        }, 10000);
+      }
+    </script>
   </body>
 </html>

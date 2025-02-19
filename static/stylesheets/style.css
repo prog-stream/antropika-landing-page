@@ -1,16 +1,17 @@
 /* @import url('https://fonts.cdnfonts.com/css/segoe-ui-4'); */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .hero-section {
   background-color: #163246;
   color: #fff;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,6 +52,7 @@
   color: #ddd;
   padding-top: 40px;
   font-size: 20px;
+  font-family: "Nunito", serif;
 }
 .form-section {
   max-width: 1200px;
@@ -232,7 +234,66 @@ footer a {
   text-decoration: none;
   color: #5e6282;
 }
+/* Container for the messages */
+#messageContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
 
+/* Base styling for messages */
+.message {
+  padding: 15px 20px;
+  border-radius: 4px;
+  font-family: "Poppins", serif;
+  font-size: 16px;
+  margin-bottom: 10px;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); */
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+/* Success message style */
+.message.success {
+  color: black;
+}
+
+/* Error message style */
+.message.error {
+  color: #dc3545; /* Red */
+}
+
+/* Fade-out animation for removing messages */
+.message.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* Keyframes for fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyframes for fadeOut */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+.arrow-down img {
+  padding-top: 20px;
+  width: 50px;
+}
 /* ------------------------------
      Responsiveness
   ------------------------------ */
@@ -242,8 +303,14 @@ footer a {
   }
 }
 @media (max-width: 768px) {
+  .hero-section{
+    padding-bottom: 0px;
+  }
   .hero-content {
-    padding: 10px;
+    padding: 20px;
+  }
+  .hero-content img{
+    height: 150px;
   }
   .main-text {
     font-size: 19px;
@@ -302,7 +369,11 @@ footer a {
     margin-left: 20px;
     margin-right: 20px;
   }
-  .btn-container{
+  .btn-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+  #messageContainer {
     flex-direction: row;
     justify-content: center;
   }

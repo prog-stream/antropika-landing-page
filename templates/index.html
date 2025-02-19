@@ -63,7 +63,7 @@
       .register-btn {
         display: inline-block;
         background: #fac26f;
-        color: #000000;
+        color: #454545;
         border: none;
         padding: 1rem 2rem;
         font-size: 1rem;
@@ -83,7 +83,9 @@
           align-items: center; /* center items on smaller screens */
           text-align: center; /* center the text for mobile */
         }
-
+        .hero-section img {
+          height: 200px;
+        }
         .text-content {
           max-width: 100%;
           margin-bottom: 4rem; /* extra space for image and button on smaller screens */
@@ -94,7 +96,7 @@
         }
 
         .text-content h2 {
-          font-size: 1.3rem;
+          font-size: 1.8rem;
         }
 
         .subtitle {
@@ -115,7 +117,11 @@
   <body>
     {% load static %}
     <section class="hero-section">
-      <img src="{% static 'images/logo-without-desc.svg'%}" alt="Antropika Logo" class="logo" />
+      <img
+        src="{% static 'images/logo-without-desc.svg'%}"
+        alt="Antropika Logo"
+        class="logo"
+      />
       <div class="text-content">
         <h1>Are you a <span class="traveller">traveller?</span></h1>
         <p class="subtitle">Get ready for the travel revolution!</p>
