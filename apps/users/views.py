@@ -79,12 +79,12 @@ class RegisterView(APIView):
             return Response({"success": response_data})
         except IntegrityError as e:
             logging.exception(e)
-            response_data = {
-                "code": 422,
-                "data": None,
-                "message": "Utente già registrato",
-            }
             if "duplicate key value violates unique constraint" in str(e):
+                response_data = {
+                    "code": 422,
+                    "data": None,
+                    "message": "Utente già registrato",
+                }
                 return Response({"success": response_data})
         except Exception as e:
             logging.exception(e)
