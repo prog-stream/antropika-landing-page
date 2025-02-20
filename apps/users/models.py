@@ -10,7 +10,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(max_length=255, unique=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
-    language = models.CharField(max_length=10, null=True, blank=True)
+    language = models.CharField(max_length=255, null=True, blank=True)
     status = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
